@@ -13,16 +13,24 @@ namespace TimeClock
             var blockStart = new TimeSpan(0, 7, 0, 0);
             var blockEnd = new TimeSpan(0, 20, 0, 0);
 
+            string line = Console.ReadLine();
+            DateTime dt;
+            //30.10.2019 08:25
+            DateTime.TryParseExact(line, "dd/MM/yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out dt);
 
+            string lineOut = Console.ReadLine();
+            DateTime dtOut;
+            //30.10.2019 17:05
+            DateTime.TryParseExact(lineOut, "dd/MM/yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out dtOut);
+
+            Console.WriteLine();
 
             var listOfTimeLogs = new List<TimeLog>
             {
-                new TimeLog {EntryDateTime = new DateTime(2019,10,04,8,25,0),EntryType = EntryTypes.In},
+                new TimeLog {EntryDateTime = dt,EntryType = EntryTypes.In},
               
-                new TimeLog {EntryDateTime = new DateTime(2019,10,04,17,5,0),EntryType = EntryTypes.Out}
+                new TimeLog {EntryDateTime = dtOut,EntryType = EntryTypes.Out}
             };
-
-            
 
 
             var timeBlocks = new List<TimeBlock>();
@@ -44,7 +52,7 @@ namespace TimeClock
 
                 if (block.Duration >= TimeSpan.FromMinutes(520))
                 {
-                    Console.WriteLine($"            {block}\n            Length: {block.Duration.ToString(@"hh\:mm")}");
+                    Console.WriteLine($"            {block}\n            Time at work: {block.Duration.ToString(@"hh\:mm")}");
                 }
                 else
                 {
@@ -59,7 +67,7 @@ namespace TimeClock
 
 
 
-            Console.WriteLine($"\nTotal Working Hours: {workingTime.ToString(@"hh\:mm")}");
+            Console.WriteLine($"\nTotal Working/Productive Hours: {workingTime.ToString(@"hh\:mm")}");
 
             if (workingTime >= TimeSpan.FromMinutes(480))
             {

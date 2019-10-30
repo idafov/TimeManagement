@@ -24,7 +24,7 @@ namespace TimeClock
 
         public override string ToString()
         {
-            return $"In: {In.EntryDateTime:HH:mm}\n            Out: {Out.EntryDateTime:HH:mm}";
+            return $"Entry time: {In.EntryDateTime:HH:mm}\n            Leave time: {Out.EntryDateTime:HH:mm}";
         }
 
     }
